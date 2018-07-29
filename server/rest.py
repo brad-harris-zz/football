@@ -26,6 +26,28 @@ class getTeam(Resource):
         result = cur.fetchone()
         return jsonify(result)
 
+class GetPower5(Resource):
+    def get(self):
+        getTeams = '''
+            SELECT teams.name, teams.icon, conferences.name FROM teams 
+            JOIN conferences ON teams.conference_id=conferences.id 
+            WHERE conferences.id=4 OR conferences.id=5 OR conferences.id=6 OR conferences.id=11 OR conferences.id=12
+            ORDER BY teams.name
+        '''
+        cur.execute(getTeams)
+        teamData = {
+            'ACC': [],
+            'Big 10': [],
+            'Big XII': [],
+            'Pac 12': [],
+            'SEC': []
+        }
+        for row in cur.fetchall():
+            teamData[row[2]].append(row[0])
+        teamsJSON = json.dumps(teamData)
+        response = Response(teamsJSON, status=200, mimetype='application/json')
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response
 
 def serializer(o):
     if isinstance(o, datetime.datetime) or isinstance(o, datetime.date):
@@ -59,6 +81,7 @@ class GetGames(Resource):
 api.add_resource(HelloWorld, '/')
 api.add_resource(getTeam, '/team/<int:team_id>')
 api.add_resource(GetGames, '/week/<int:week_id>')
+api.add_resource(GetPower5, '/power')
 
 if __name__ == '__main__':
     app.run(debug=True)

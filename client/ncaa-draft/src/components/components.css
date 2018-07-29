@@ -1,0 +1,82 @@
+
+.picks table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 750px;
+    margin: auto;
+}
+
+.picks table, th, td {
+    vertical-align: top;
+    border: 1px solid;
+}
+
+.picks th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.picks td {
+    padding: 5px;
+    height: 60px;
+}
+
+.picks .confColumn {
+    vertical-align: middle;
+    font-weight: bold;
+    width: 75px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.picks span {
+    line-height: 1.25;
+}
+
+.results {
+    text-align: left;
+}
+
+.results h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0px;
+}
+
+.picksList {
+    max-height: 350px;
+    overflow-y: scroll;
+    font-size: 0.8rem;
+    padding: 5px;
+    line-height: 1.25rem;
+}
+
+.teamPick {
+    float: left;
+}
+
+.picker {
+    float: right;
+}
+
+.confViewer {
+    overflow: hidden;
+}
+
+.conference {
+    width: 250px;
+    float: left;
+    text-align: left;
+}
+
+.conference ul {
+    list-style-type: none;
+    line-height: 1.3rem;
+}
+
+.conference li:hover{
+    color: blue;
+    cursor: pointer;
+}

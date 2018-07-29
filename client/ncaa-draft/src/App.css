@@ -1,5 +1,11 @@
+body {
+  background-color: #d1e2ff;
+}
+
 .App {
   text-align: center;
+  background-color: #fff;
+  padding: 5px;
 }
 
 .App-logo {
@@ -25,4 +31,13 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.results {
+  width: 250px;
+  float: left;
+}
+
+.picks {
+  overflow: hidden;
 }
