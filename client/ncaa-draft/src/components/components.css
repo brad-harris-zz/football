@@ -66,7 +66,7 @@
 }
 
 .conference {
-    width: 250px;
+    width: 195px;
     float: left;
     text-align: left;
 }
@@ -79,4 +79,14 @@
 .conference li:hover{
     color: blue;
     cursor: pointer;
+}
+
+.conference li.selected {
+    font-weight: bold;
+    color: #0852c9;
+}
+
+.sidebar .scrollable {
+    height: 725px;
+    overflow-y: scroll;
 }

@@ -17,7 +17,11 @@ class DraftPicks extends Component {
             </li>);
             picks.push(dom);
         }
-        return (<ol>{picks}</ol>);
+        return (
+            <div className='scrollable'>
+                <ol>{picks}</ol>
+            </div>
+        );
     }
 }
 

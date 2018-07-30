@@ -4,15 +4,22 @@ body {
   font-family: sans-serif;
 }
 
-.App {
-  width: 1250px;
-  margin: auto;
-}
-
 table {
   width: 100%
 }
 
 td {
   width: 200px;
+}
+
+#appHeader {
+  background-color: #0852c9;
+  height: 50px;
+  padding-top: 13px;
+}
+
+#appHeader h1 {
+  color: #fff;
+  margin-left: 25px;
+  margin-top: 0px;
 }

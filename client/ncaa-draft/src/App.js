@@ -9,7 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'teams': undefined
+      'teams': undefined,
+      'selectedTeam': undefined,
+      'selectedTeamSchedule': undefined
     }
   }
   getTeams() {
@@ -23,21 +25,44 @@ class App extends Component {
       })
     }
   }
+  selectTeam(selectedTeam) {
+    if (this.state.selectedTeam == selectedTeam) {
+      return;
+    }
+    fetch('http://localhost:5000/opponents/' + selectedTeam)
+    .then(results => {
+      return results.json();
+    })
+    .then(opponents => {
+      this.setState({
+        'selectedTeam': opponents.team_id,
+        'selectedTeamSchedule': opponents.opponents
+      });
+    })
+  }
   render() {
     this.getTeams();
+    if (this.state.selectedTeamSchedule) {
+      console.log(this.state.selectedTeamSchedule);
+    }
     return (
       <div className="App">
-        <div>
-          <div className="results">
-            <h1>Recent Picks</h1>
-            <div className="picksList">
-              <DraftPicks picks={NCAAPicks} />
-            </div>
-          </div>
-          <DraftGrid results={NCAADraft} />
+        <div className="sidebar">
+          <h1>Picks</h1>
+          <DraftPicks picks={NCAAPicks} />
         </div>
-        <div>
-          <TeamBrowser teams={this.state.teams} />
+        <div className="content">
+          <div id='gridResults'>
+            <DraftGrid results={NCAADraft} />
+          </div>
+          <div id='teamPicker'>
+            <TeamBrowser 
+              teams={this.state.teams} 
+              selectedTeam={this.state.selectedTeam} 
+              selectTeamCallback={this.selectTeam.bind(this)}
+              selectedTeamSchedule={this.state.selectedTeamSchedule} 
+            />
+          </div>
         </div>
       </div>
     );
