@@ -1,16 +1,17 @@
 from flask import Flask, jsonify, Response
 from flask_restful import Resource, Api
-import MySQLdb
 import json
 import datetime
+import pymysql
 
-db = MySQLdb.connect(
+conn = pymysql.connect(
     host="localhost",
     user="football",
     passwd="",
     db="football"
 )
-cur = db.cursor()
+
+cur = conn.cursor()
 
 app = Flask(__name__)
 api = Api(app)
@@ -119,4 +120,4 @@ api.add_resource(GetPower5, '/power')
 api.add_resource(GetOpponents, '/opponents/<int:team_id>')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

@@ -16,7 +16,7 @@ class App extends Component {
   }
   getTeams() {
     if (!this.state.teams) {
-      fetch('http://localhost:5000/power')
+      fetch('http://bradharris.name:5000/power')
       .then(results => {
         return results.json();
       })
@@ -29,7 +29,7 @@ class App extends Component {
     if (this.state.selectedTeam == selectedTeam) {
       return;
     }
-    fetch('http://localhost:5000/opponents/' + selectedTeam)
+    fetch('http://bradharris.name:5000/opponents/' + selectedTeam)
     .then(results => {
       return results.json();
     })
