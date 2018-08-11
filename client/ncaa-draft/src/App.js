@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {NCAADraft, NCAAPicks} from './NcaaDraft';
 import {DraftCard} from './components/DraftCard/DraftCard';
 import {DraftPicks} from './components/DraftPicks/DraftPicks';
 import {TeamBrowser} from './components/TeamBrowser/TeamBrowser';
@@ -10,10 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'selectedTeamId': undefined,
       'teamData': TeamData,
       'conferences': undefined,
-      'selectedTeam': undefined,
       'draftOrder': [],
       'draftGrid': {
         'Adam' : this.getEmptyIconData(),
@@ -44,21 +41,6 @@ class App extends Component {
       this.setState({'conferences': teams});
     })
   }
-  selectTeam(selectedTeam) {
-    if (this.state.selectedTeam === selectedTeam) {
-      return;
-    }
-    fetch('http://localhost:5000/opponents/' + selectedTeam.id)
-    .then(results => {
-      return results.json();
-    })
-    .then(opponents => {
-      this.setState({
-        'selectedTeam': selectedTeam,
-        'selectedTeamSchedule': opponents.opponents
-      });
-    })
-  }
   selectConference(selectedConference) {
     if (selectedConference !== this.state.selectedConference) {
       this.setState({selectedConference});
@@ -79,6 +61,10 @@ class App extends Component {
     }
     return cards;
   }
+  getPicker() {
+    let index = this.state.pickIndex % 10;
+    return index < 5 ? this.state.draftOrder[index] : this.state.draftOrder[9-index];
+  }
   makePick(teamData) {
     var pickIndex = this.state.pickIndex;
     if (pickIndex === 60 ) {
@@ -86,9 +72,13 @@ class App extends Component {
     }
     var individualPicks = this.state.draftGrid;
     var picks = this.state.picks;
-    const picker = picks[pickIndex].name;
+    const picker = this.getPicker();
+    console.log(picker + ' picks ' + teamData.name);
     individualPicks[picker][teamData.conference].push(teamData);
-    picks[pickIndex].team = teamData.name;
+    picks[pickIndex] = {
+      'team' : teamData.name,
+      'name' : picker
+    };
     pickIndex++;
     let teamDataState = this.state.teamData;
     teamDataState[teamData.id].owner = picker;
@@ -112,27 +102,8 @@ class App extends Component {
       names[index] = names[i-1];
       names[i-1] = name;
     }
-    let pickerIndex = 0;
-    let pickerDirection = 1;
-    let picks = [];
-    for(var i=0; i<60; i++) {
-      picks[i] = {
-        'name': names[pickerIndex],
-        'team': undefined
-      };
-      pickerIndex += pickerDirection;
-      if (pickerIndex === 5) {
-        pickerDirection = -1;
-        pickerIndex--;
-      }
-      if (pickerIndex === -1) {
-        pickerDirection = 1;
-        pickerIndex++
-      }
-    }
     this.setState({
       pickIndex: 0,
-      picks: picks,
       draftOrder: names
     })
   }
@@ -147,11 +118,26 @@ class App extends Component {
     if(!this.state.conferences) {
       this.getTeams();
     }
+    let availableConferences = [];
+    const onTheClock = this.getPicker();
+    if (this.state.pickIndex >= 0 && this.state.pickIndex < 50 ) {
+      var picks = this.state.draftGrid[onTheClock];
+      for(var conf in picks) {
+        if(picks[conf].length < 2) {
+          availableConferences.push(conf);
+        }
+      }
+    } else if (this.state.pickIndex < 60 ) {
+      availableConferences = ['ACC', 'Big 10', 'Big XII', 'Pac 12', 'SEC'];
+    }
+
     return (
       <div className="App">
         <div className="sidebar">
           <h1>Picks</h1>
-          <DraftPicks picks={this.state.picks} />
+          <DraftPicks 
+            picks={this.state.picks}
+          />
         </div>
         <div className="content">
           <div id='gridResults'>
@@ -161,6 +147,7 @@ class App extends Component {
             <TeamBrowser 
               conferences={this.state.conferences}
               makePickCallback={this.makePick.bind(this)}
+              availableConferences={availableConferences}
             />
           </div>
         </div>

@@ -4,7 +4,6 @@
     display: inline-block;
     margin-top: 20px;
     margin-left:20px;
-    height: 450px;
 }
 
 .cardHeader {
@@ -25,14 +24,8 @@
 .cardContent {
     text-align: left;
     padding: 5px;
+    height: 380px;
 }
-
-/* .cardContent ul {
-    list-style-type: none;
-    padding-left: 20px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-} */
 
 .cardContent h1 {
     font-size: 1rem;
@@ -46,6 +39,7 @@
 ul.draftIconList {
     list-style-type: none;
     padding-left: 5px;
+    margin: 0px;
 }
 
 ul.draftIconList>li {

@@ -27,6 +27,10 @@
   border-left: 1px solid #083d91;
 }
 
+#gridResults {
+  height: 450px;
+}
+
 .results {
   width: 250px;
   float: left;

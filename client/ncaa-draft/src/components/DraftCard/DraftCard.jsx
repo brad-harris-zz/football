@@ -42,6 +42,7 @@ class DraftCard extends Component {
                 </div>
                 <div className='cardContent'>
                     {this.renderIcons()}
+                    {"\u00a0"}
                 </div>
             </div>
         )
