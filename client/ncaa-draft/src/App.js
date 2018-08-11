@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {DraftCard} from './components/DraftCard/DraftCard';
 import {DraftPicks} from './components/DraftPicks/DraftPicks';
 import {TeamBrowser} from './components/TeamBrowser/TeamBrowser';
-import {TeamData} from './teams.js';
+import {TeamData, ConferenceData} from './teams.js';
 import './App.css';
 
 class App extends Component {
@@ -27,19 +27,26 @@ class App extends Component {
     return {'ACC': [], 'Big 10': [], 'Big XII': [], 'Pac 12': [], 'SEC': []};
   }
   getTeams() {
-    fetch('http://localhost:5000/power')
-    .then(results => {
-      return results.json();
-    })
-    .then(teams => {
-      let teamDataList={};
-      for(var conf in teams) {
-        for(var team in teams[conf]) {
-          teams[conf][team]['conference'] = conf;
-        }
+    let teamData = ConferenceData;
+    for (var conf in teamData) {
+      for (var team in teamData[conf]) {
+        teamData[conf][team]['conference'] = conf;
       }
-      this.setState({'conferences': teams});
-    })
+    }
+    this.setState({'conferences': teamData});
+    // fetch('http://localhost:5000/power')
+    // .then(results => {
+    //   return results.json();
+    // })
+    // .then(teams => {
+    //   let teamDataList={};
+    //   for(var conf in teams) {
+    //     for(var team in teams[conf]) {
+    //       teams[conf][team]['conference'] = conf;
+    //     }
+    //   }
+    //   this.setState({'conferences': teams});
+    // })
   }
   selectConference(selectedConference) {
     if (selectedConference !== this.state.selectedConference) {
