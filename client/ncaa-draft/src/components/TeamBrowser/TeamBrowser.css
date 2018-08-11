@@ -1,0 +1,115 @@
+.results {
+    text-align: left;
+}
+
+.results h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0px;
+}
+
+.confViewer {
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.confContent {
+    width: 100%;
+    float: left;
+    text-align: left;
+}
+
+.confContent ul {
+    list-style-type: none;
+    line-height: 1.3rem;
+}
+
+.confContent li {
+    margin-bottom: 2px;
+}
+
+.confListing li:hover{
+    color: blue;
+    cursor: pointer;
+}
+
+.confListing li:hover>img {
+    height: 40px;
+}
+
+.confContent li.selected {
+    font-weight: bold;
+    color: #0852c9;
+}
+
+.confContent li>img {
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+.confListing li.selected>img {
+    height: 50px;
+}
+
+.confListing li.owned {
+    text-decoration: line-through;
+}
+
+.confListing li.owned>img {
+    opacity: 0.3;
+}
+
+.confHeader {
+    border-bottom: 1px solid;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.confHeader span {
+    font-weight: bold;
+    text-align: center;
+    width: 75px;
+    display: inline-block;
+    color: #083d91;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.confHeader span:hover {
+    background-color: #083d91;
+    color: #CBB677;
+    cursor: pointer;
+}
+
+.confHeader span.selected {
+    background-color: #083d91;
+    color: #CBB677;
+}
+
+.confListing {
+    width: 400px;
+    height: 510px;
+    display: inline-block;
+}
+
+.opponents {
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bye {
+    font-style: italic;
+}
+
+.selectTeam {
+    background-color: green;
+    color: white;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 1px solid #083d91;
+  }
+
+  .selectTeam:hover {
+      cursor: pointer;
+  }

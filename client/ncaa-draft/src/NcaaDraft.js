@@ -73,7 +73,7 @@ export const NCAAPicks = [
     {'name': 'Brian', 'pick': 'Kansas State'},
     {'name': 'Chad', 'pick': 'Georgia'},
     {'name': 'Chad', 'pick': 'TCU'},
-    {'name': 'Brian', 'pick': 'Miami'},
+    {'name': 'Brian', 'pick': 'Miami (FL)'},
     {'name': 'Mike', 'pick': 'Baylor'},
     {'name': 'Brad', 'pick': 'Auburn'},
     {'name': 'Adam', 'pick': 'Oregon'},

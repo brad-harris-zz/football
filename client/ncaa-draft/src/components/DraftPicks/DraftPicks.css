@@ -1,0 +1,15 @@
+
+.sidebar .scrollable {
+    height: 900px;
+    overflow-y: scroll;
+    line-height: 1.5rem;
+    padding-right: 5px;
+}
+
+.teamPick {
+    float: left;
+}
+
+.picker {
+    float: right;
+}

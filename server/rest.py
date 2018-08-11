@@ -30,7 +30,7 @@ class getTeam(Resource):
 class GetPower5(Resource):
     def get(self):
         getTeams = '''
-            SELECT teams.id, teams.name, teams.icon, conferences.name FROM teams 
+            SELECT teams.id, teams.name, teams.icon, teams.color, conferences.name FROM teams 
             JOIN conferences ON teams.conference_id=conferences.id 
             WHERE conferences.id=4 OR conferences.id=5 OR conferences.id=6 OR conferences.id=11 OR conferences.id=12
             ORDER BY teams.name
@@ -47,9 +47,10 @@ class GetPower5(Resource):
             team = {
                 'id': row[0],
                 'name': row[1],
-                'icon': row[2]
+                'icon': row[2],
+                'color': row[3]
             }
-            teamData[row[3]].append(team)
+            teamData[row[4]].append(team)
         teamsJSON = json.dumps(teamData)
         response = Response(teamsJSON, status=200, mimetype='application/json')
         response.headers['Access-Control-Allow-Origin'] = '*'

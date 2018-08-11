@@ -1,26 +1,8 @@
 .App {
   text-align: center;
   padding: 5px;
-  width: 1500px;
+  width: 1200px;
   margin: auto;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .sidebar {
@@ -31,7 +13,7 @@
 
 .sidebar h1 {
   text-align: left;
-  color: #0852c9;
+  color: #083d91;
   margin-bottom: 0px;
 }
 
@@ -40,8 +22,9 @@
 }
 
 .content {
-  width: 1240px;
+  width: 930px;
   float: left;
+  border-left: 1px solid #083d91;
 }
 
 .results {
@@ -51,4 +34,17 @@
 
 .picks {
   overflow: hidden;
+}
+
+.startDraft {
+  background-color: green;
+  color: white;
+  font-size: 32pt;
+  margin-top: 20px;
+  padding: 25px;
+  border: 1px solid #083d91;
+}
+
+.startDraft:hover {
+  cursor: pointer;
 }

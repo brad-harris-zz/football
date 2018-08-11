@@ -1,0 +1,36 @@
+.picks table {
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 750px;
+    margin: auto;
+}
+
+.picks table, th, td {
+    vertical-align: top;
+    border: 1px solid;
+}
+
+.picks th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.picks td {
+    padding: 5px;
+    height: 60px;
+}
+
+.picks .confColumn {
+    vertical-align: middle;
+    font-weight: bold;
+    width: 75px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.picks span {
+    line-height: 1.25;
+}

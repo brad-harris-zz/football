@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './components.css';
+import './DraftGrid.css';
 
 class DraftGrid extends Component {
   keyCounter = 0;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './components.css';
+import './DraftPicks.css';
 
 class DraftPicks extends Component {
     keyCounter = 1000;
@@ -10,9 +10,9 @@ class DraftPicks extends Component {
         let picks = [];
         for (var pick in this.props.picks) {
             const line = this.props.picks[pick];
-            const key = line.name + line.pick;
+            const key = 'pick' + pick;
             const dom = (<li key={'li'+key}>
-                <span className='teamPick' key={'team'+key}>{line.pick}</span>
+                <span className='teamPick' key={'team'+key}>{line.team}</span>
                 <span className='picker' key={'picker'+key}>{line.name}</span>
             </li>);
             picks.push(dom);
