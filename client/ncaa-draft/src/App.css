@@ -1,7 +1,7 @@
 .App {
   text-align: center;
   padding: 5px;
-  width: 1200px;
+  width: 1250px;
   margin: auto;
 }
 
@@ -22,9 +22,8 @@
 }
 
 .content {
-  width: 930px;
+  width: 100%;
   float: left;
-  border-left: 1px solid #083d91;
 }
 
 #gridResults {
@@ -36,10 +35,6 @@
   float: left;
 }
 
-.picks {
-  overflow: hidden;
-}
-
 .startDraft {
   background-color: green;
   color: white;
@@ -47,8 +42,13 @@
   margin-top: 20px;
   padding: 25px;
   border: 1px solid #083d91;
+  border-radius: 20px;
 }
 
 .startDraft:hover {
   cursor: pointer;
+}
+
+#teamPicker {
+  text-align: left;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './DraftCard.css';
+import ClassNames from 'classnames';
 
 class DraftCard extends Component {
     renderIcons() {
@@ -14,7 +15,7 @@ class DraftCard extends Component {
                 const teamData = this.props.picks[conf][pick];
                 const iconDom = (
                     <li key={key+teamData.icon}>
-                        <img className='draftIcon' src={'http://www.bradharris.name' + teamData.icon} />
+                        <img className='draftIcon' src={'http://www.bradharris.name' + teamData.icon} alt={teamData.name} title={teamData.name} />
                     </li>
                 );
                 icons.push(iconDom);
@@ -36,11 +37,11 @@ class DraftCard extends Component {
     }
     render() {
         return (
-            <div className='draftCard'>
+            <div className={ClassNames('draftCard', this.props.active ? 'active' : undefined)}>
                 <div className='cardHeader'>
                     <h1>{this.props.name}</h1>
                 </div>
-                <div className='cardContent'>
+                <div className={'cardContent'}>
                     {this.renderIcons()}
                     {"\u00a0"}
                 </div>

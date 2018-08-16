@@ -1,0 +1,38 @@
+.selectedTeamData {
+    text-align: left;
+    padding-left: 20px;
+    width: 320px;
+    padding-left: 20px;
+    float: left;
+}
+
+.selectedTeamData h1 {
+    font-size: 1.5rem;
+}
+
+.selectedTeamData h1 img {
+    height: 50px;
+    vertical-align: middle;
+}
+
+.selectedTeamData h2 {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.selectedTeamData ul {
+    list-style-type: none;
+}
+
+button.selectTeam {
+    color: white;
+    font-size: 1.2rem;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+button.selectTeam:hover {
+    cursor: pointer;
+    box-shadow: 5px 5px 5px #999;
+}

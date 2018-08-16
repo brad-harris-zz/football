@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {DraftCard} from './components/DraftCard/DraftCard';
 import {DraftPicks} from './components/DraftPicks/DraftPicks';
 import {TeamBrowser} from './components/TeamBrowser/TeamBrowser';
+import TeamCard from './components/TeamCard/TeamCard';
 import {TeamData, ConferenceData} from './teams.js';
 import './App.css';
 
@@ -62,6 +63,7 @@ class App extends Component {
           key={drafter+'card'}
           name={drafter}
           picks={this.state.draftGrid[drafter]}
+          active={drafter === this.getPicker()}
         />
       )
       cards.push(component);
@@ -98,7 +100,8 @@ class App extends Component {
     this.setState({
       'draftGrid': individualPicks,
       'pickIndex': pickIndex,
-      'picks': picks
+      'picks': picks,
+      'selectedTeam': undefined
     });
   }
   startDraft() {
@@ -113,6 +116,9 @@ class App extends Component {
       pickIndex: 0,
       draftOrder: names
     })
+  }
+  selectTeamCallback(teamData) {
+    this.setState({'selectedTeam': teamData})
   }
   render() {
     if (this.state.pickIndex < 0 ) {
@@ -137,23 +143,32 @@ class App extends Component {
     } else if (this.state.pickIndex < 60 ) {
       availableConferences = ['ACC', 'Big 10', 'Big XII', 'Pac 12', 'SEC'];
     }
-
+    if (this.state.pickIndex === 60) {
+      console.log(this.state.picks);
+    }
+    const sidebarContent = this.state.selectedTeam && this.state.pickIndex < 60 ? 
+    (
+      <TeamCard 
+        team={this.state.selectedTeam}
+        draftTeam={this.makePick.bind(this)} 
+        available={!this.state.selectedTeam.owner && availableConferences.includes(this.state.selectedTeam.conference) ? true : false} 
+      />
+    ) : 
+    (
+      <DraftPicks picks={this.state.picks} />
+    )
     return (
       <div className="App">
-        <div className="sidebar">
-          <h1>Picks</h1>
-          <DraftPicks 
-            picks={this.state.picks}
-          />
-        </div>
         <div className="content">
           <div id='gridResults'>
             {this.getDraftCards()}
+            {sidebarContent}
           </div>
           <div id='teamPicker'>
             <TeamBrowser 
+              selectedTeam={this.state.selectedTeam}
+              selectTeamCallback={this.selectTeamCallback.bind(this)}
               conferences={this.state.conferences}
-              makePickCallback={this.makePick.bind(this)}
               availableConferences={availableConferences}
             />
           </div>

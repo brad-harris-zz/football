@@ -4,6 +4,22 @@
     display: inline-block;
     margin-top: 20px;
     margin-left:20px;
+    box-shadow: 5px 5px 10px #666;
+    float: left;
+}
+
+.active .cardHeader h1::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f44e";
+    margin-right: 15px;
+}
+
+.active .cardHeader h1::after {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f44e";
+    margin-left: 15px;
 }
 
 .cardHeader {
@@ -25,6 +41,7 @@
     text-align: left;
     padding: 5px;
     height: 380px;
+    background-color: #fff;
 }
 
 .cardContent h1 {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './TeamBrowser.css';
 import {opponents} from '../../opponents.js';
+import Conference from './Conference';
 
 class TeamBrowser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'selectedConference': 'ACC'
+      'selectedTeam' : undefined
     }
   }
   teamClicker(teamData) {
@@ -111,29 +112,38 @@ class TeamBrowser extends Component {
       this.setState({'selectedConference': conf});
     }
   }
+  renderConference(key) {
+    if(!this.props.conferences) {
+      return undefined;
+    }
+    return (
+      <Conference name={key} teams={this.props.conferences[key]} />
+    )
+  }
+  createClickHandler(teamData) {
+    return (event) => {
+      this.props.selectTeamCallback(teamData);
+    }
+  }
+  getConference(key) {
+    return (
+      <Conference
+        name={key}
+        teams={this.props.conferences ? this.props.conferences[key] : undefined}
+        getClickHandler={this.createClickHandler.bind(this)}
+        selectedTeam={this.props.selectedTeam}
+      />
+    )
+  }
   render() {
-    const teamData = this.renderTeams();
     return (
       <div className='confViewer'>
-        <div className='confHeader'>
-          <span 
-            className={this.state.selectedConference === 'ACC' ? 'selected' : undefined}
-            onClick={this.conferenceClicker('ACC')}>ACC</span>
-          <span 
-            className={this.state.selectedConference === 'Big 10' ? 'selected' : undefined}
-            onClick={this.conferenceClicker('Big 10')}>Big 10</span>
-          <span 
-            className={this.state.selectedConference === 'Big XII' ? 'selected' : undefined}
-            onClick={this.conferenceClicker('Big XII')}>Big XII</span>
-          <span 
-            className={this.state.selectedConference === 'Pac 12' ? 'selected' : undefined}
-            onClick={this.conferenceClicker('Pac 12')}>Pac 12</span>
-          <span 
-            className={this.state.selectedConference === 'SEC' ? 'selected' : undefined}
-            onClick={this.conferenceClicker('SEC')}>SEC</span>
-        </div>
         <div className='confContent'>
-          {teamData}
+          {this.getConference('ACC')}
+          {this.getConference('Big 10')}
+          {this.getConference('Big XII')}
+          {this.getConference('Pac 12')}
+          {this.getConference('SEC')}
         </div>
       </div>
     )
