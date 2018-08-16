@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       'teamData': TeamData,
       'conferences': undefined,
-      'draftOrder': [],
+      'draftOrder': this.props.draftOrder,
       'draftGrid': {
         'Adam' : this.getEmptyIconData(),
         'Brad' : this.getEmptyIconData(),
@@ -20,7 +20,7 @@ class App extends Component {
         'Chad' : this.getEmptyIconData(),
         'Mike' : this.getEmptyIconData()
       },
-      'pickIndex' : -1,
+      'pickIndex' : 0,
       'picks': []
     }
   }
@@ -104,30 +104,10 @@ class App extends Component {
       'selectedTeam': undefined
     });
   }
-  startDraft() {
-    var names = ['Adam', 'Brad', 'Brian', 'Chad', 'Mike'];
-    for(var i=5; i>0; i--) {
-      let index = Math.floor(Math.random() * i);
-      let name = names[index];
-      names[index] = names[i-1];
-      names[i-1] = name;
-    }
-    this.setState({
-      pickIndex: 0,
-      draftOrder: names
-    })
-  }
   selectTeamCallback(teamData) {
     this.setState({'selectedTeam': teamData})
   }
   render() {
-    if (this.state.pickIndex < 0 ) {
-      return (
-        <div className="App">
-          <button className='startDraft' onClick={this.startDraft.bind(this)}>Start Draft</button>
-        </div>
-      )
-    }
     if(!this.state.conferences) {
       this.getTeams();
     }

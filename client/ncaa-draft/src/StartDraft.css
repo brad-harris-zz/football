@@ -1,0 +1,36 @@
+.StartDraftApp {
+    width: 600px;
+    margin: auto;
+}
+
+.draftOrder {
+    width: 200px;
+    float: left;
+}
+
+.draftOrder h1 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.draftOrder .inputField {
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.draftOrder input {
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 16px;
+    outline: none;
+    width: 100px;
+  }
+
+  .startButton {
+      width: 250px;
+      float: left;
+      margin-left: 50px;
+      margin-top: 75px;
+  }
